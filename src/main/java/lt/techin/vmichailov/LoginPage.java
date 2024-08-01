@@ -1,5 +1,6 @@
 package lt.techin.vmichailov;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,6 +50,12 @@ public class LoginPage extends BasePage {
 
     @FindBy(css = "button#submit-login")
     private WebElement loginSubmitButton;
+
+    @FindBy(css = ".alert-danger")
+    WebElement emailWarningMessage;
+
+    @FindBy(css = "input[name='s']")
+    WebElement searchInputWindow;
 
     private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -124,4 +131,20 @@ public class LoginPage extends BasePage {
     public void submitLogin() {
         loginSubmitButton.click();
     }
+
+    // Get error warning message after bad email input
+    public String getWarningMessageText() {
+        return wait.until(ExpectedConditions.visibilityOf(emailWarningMessage)).getText();
+    }
+
+    // Search for items
+    public void searchItem(String itemName) {
+        searchInputWindow.clear();
+        searchInputWindow.sendKeys(itemName);
+        searchInputWindow.sendKeys(Keys.ENTER);
+    }
+
+
+
 }
+
