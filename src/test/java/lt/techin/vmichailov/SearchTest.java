@@ -12,6 +12,7 @@ void searchForValidItem(){
     loginPage.setPassword("*DartasBlogas+");
     loginPage.submitLogin();
     loginPage.searchItem(ItemData.getRandomValidItem());
+    
     //Assertions.assertEquals(ItemData.getRandomValidItem().toUpperCase(), loginPage.getItemName().toUpperCase(),
            // "The product name should match.");
 
