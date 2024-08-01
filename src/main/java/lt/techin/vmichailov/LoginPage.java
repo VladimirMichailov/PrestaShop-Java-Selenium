@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class LoginPage extends BasePage {
 
@@ -56,6 +57,8 @@ public class LoginPage extends BasePage {
 
     @FindBy(css = "input[name='s']")
     WebElement searchInputWindow;
+
+
 
     private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -143,6 +146,7 @@ public class LoginPage extends BasePage {
         searchInputWindow.sendKeys(itemName);
         searchInputWindow.sendKeys(Keys.ENTER);
     }
+
 
 
 

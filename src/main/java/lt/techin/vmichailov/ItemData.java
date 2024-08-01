@@ -5,7 +5,7 @@ import java.util.Random;
 public class ItemData {
     private static String randomValidItem;
     private static String randomInValidItem;
-    private static String[] validSearches = {"Bear", "Brown", "Notebook", "Vector", "Hummingbird", "Mug", "Frame", "Cushion", "Fox", "Sweater", "Graphics", "Poster"};
+    private static String[] validSearches = {"Bear", "Brown", "Notebook", "Vector", "Hummingbird", "Mug", "Frame", "Cushion", "Fox", "Sweater", "Graphics"};
     private static String[] inValidSearches = {"Kava", "Duona", "Svietas", "Grikiai", "Mesa", "Akiniai", "Gaga", "Baba", "Nana", "Abvgd", "Klmnj", "Oprst", "Numeris"};
 
     public static String getRandomValidItem() {
@@ -19,6 +19,10 @@ public class ItemData {
         return randomInValidItem;
     }
 
+    public static void searchData() {
+        randomValidItem = getRandomValidItem();
+        randomInValidItem = getRandomInValidItem();
+    }
     public static String getValidItem() {
         return randomValidItem;
     }
