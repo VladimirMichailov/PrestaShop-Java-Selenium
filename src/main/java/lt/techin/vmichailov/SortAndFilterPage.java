@@ -19,6 +19,8 @@ public class SortAndFilterPage extends BasePage {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     Actions actions = new Actions(driver);
 
+    // Categories
+
     @FindBy(linkText = "CLOTHES")
     WebElement clothesCategory;
 
@@ -27,6 +29,8 @@ public class SortAndFilterPage extends BasePage {
 
     @FindBy(css = "#_desktop_top_menu .category:nth-of-type(3) [data-depth]")
     WebElement artCategory;
+
+    //Sort By selectors
 
     @FindBy(css = ".btn-unstyle.select-title")
     WebElement sortByMenus;
@@ -55,6 +59,63 @@ public class SortAndFilterPage extends BasePage {
     @FindBy(linkText = "Reference, Z to A")
     WebElement referenceZtoA;
 
+    //Filters selectors for clothes
+
+    @FindBy(css = "section:nth-of-type(1) > .collapse .custom-checkbox")
+    WebElement inStockCheckbox;
+
+    @FindBy(css="section:nth-of-type(2) > .collapse > li:nth-of-type(1) > .facet-label > .custom-checkbox")
+    WebElement discountedCheckbox;
+
+    @FindBy(css="section:nth-of-type(2) > .collapse > li:nth-of-type(2) > .facet-label > .custom-checkbox")
+    WebElement newProductCheckbox;
+
+    @FindBy(css = ".ui-corner-all.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content > a:nth-of-type(1)")
+    WebElement minPrideSlider;
+
+    @FindBy(css = ".ui-corner-all.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content > a:nth-of-type(2)")
+    WebElement maxPriceSlider;
+
+    @FindBy(css = "section:nth-of-type(4) > .collapse > li:nth-of-type(1) > .facet-label > .custom-checkbox")
+    WebElement menCategoryCheckbox;
+
+    @FindBy(css = "section:nth-of-type(4) > .collapse > li:nth-of-type(2) > .facet-label > .custom-checkbox")
+    WebElement womenCategoryCheckbox;
+
+    @FindBy(css ="section:nth-of-type(5) > .collapse > li:nth-of-type(1) > .facet-label > .custom-checkbox")
+    WebElement sSizeCheckbox;
+
+    @FindBy(css= "section:nth-of-type(5) > .collapse > li:nth-of-type(2) > .facet-label > .custom-checkbox")
+    WebElement mSizeCheckbox;
+
+    @FindBy(css = "li:nth-of-type(3) > .facet-label > .custom-checkbox")
+    WebElement lSizeCheckbox;
+
+    @FindBy(css = "li:nth-of-type(4) > .facet-label > .custom-checkbox")
+    WebElement xlSizeCheckbox;
+
+    @FindBy(css = "section:nth-of-type(6) > .collapse > li:nth-of-type(1) > .facet-label > .custom-checkbox")
+    WebElement colorWhiteCheckbox;
+
+    @FindBy(css = "section:nth-of-type(6) > .collapse > li:nth-of-type(2) > .facet-label > .custom-checkbox")
+    WebElement colorBlackCheckbox;
+
+    @FindBy(css = "section:nth-of-type(7) > .collapse > li:nth-of-type(1) > .facet-label > .custom-checkbox")
+    WebElement longSleeves;
+
+    @FindBy(css ="section:nth-of-type(7) > .collapse > li:nth-of-type(2) > .facet-label > ._gray-darker.js-search-link.search-link")
+    WebElement shortSleeves;
+
+
+
+
+
+
+
+
+
+
+
     // Select category
 
     public void clickClothesCategory() {
@@ -72,15 +133,15 @@ public class SortAndFilterPage extends BasePage {
     // Wait for category page
 
     public void waitForClothesPage() {
-        wait.until(ExpectedConditions.urlToBe("http://192.168.32.234/3-clothes"));
+        wait.until(ExpectedConditions.urlToBe("http://192.168.89.47/3-clothes"));
     }
 
     public void waitForAccessoriesPage() {
-        wait.until(ExpectedConditions.urlToBe("http://192.168.32.234/6-accessories"));
+        wait.until(ExpectedConditions.urlToBe("http://192.168.89.47/6-accessories"));
     }
 
     public void waitForArtPage() {
-        wait.until(ExpectedConditions.urlToBe("http://192.168.32.234/9-art"));
+        wait.until(ExpectedConditions.urlToBe("http://192.168.89.47/9-art"));
     }
 
     // Sort by methods
@@ -99,6 +160,8 @@ public class SortAndFilterPage extends BasePage {
     public void waitForSortBy(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByCssSelector(".btn-unstyle.select-title")));
     }
+
+    // Sort By methods.
 
     public void clickSortBy() {
         sortByMenus.click();
@@ -137,6 +200,73 @@ public class SortAndFilterPage extends BasePage {
 
     public String getTextFromSortBy(){
         return sortByMenus.getText();
+    }
+
+    //Clothes filter by methods
+    public void scrollToSizeS(){
+        actions.scrollToElement(sSizeCheckbox);
+        actions.perform();
+    }
+
+    public void scrollToShortSleeves(){
+        actions.scrollToElement(shortSleeves);
+        actions.perform();
+    }
+
+    public void clickInStock(){
+        inStockCheckbox.click();
+    }
+
+    public void waitForAnyPageExceptClothes() {
+        wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe("http://192.168.89.47/3-clothes")));
+    }
+
+    public void clickDiscounted(){
+        discountedCheckbox.click();
+    }
+
+    public void clickNewProduct(){
+        newProductCheckbox.click();
+    }
+
+    public void clickCategoryMen(){
+        menCategoryCheckbox.click();
+    }
+
+    public void clickCategoryWomen(){
+        womenCategoryCheckbox.click();
+    }
+
+    public void clickSizeS(){
+        sSizeCheckbox.click();
+    }
+
+    public void clickSizeM(){
+        mSizeCheckbox.click();
+    }
+
+    public void clickSizeL(){
+        lSizeCheckbox.click();
+    }
+
+    public void clickSizeXl(){
+        xlSizeCheckbox.click();
+    }
+
+    public void clickColorWhite(){
+        colorWhiteCheckbox.click();
+    }
+
+    public void clickColorBlack(){
+        colorBlackCheckbox.click();
+    }
+
+    public void clickPropertyLongSleeves(){
+        longSleeves.click();
+    }
+
+    public void clickPropertyShortSleeves(){
+        shortSleeves.click();
     }
 
 }

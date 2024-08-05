@@ -136,8 +136,8 @@ public class LoginPageTest extends BaseTest {
         loginPage.clickLoginSaveButton();
 
         // Verify user is not logged in
-        Assertions.assertNotEquals(UserDataGenerator.getFirstName() + " " + UserDataGenerator.getLastName(), loginPage.getMyUserName(), "Name does not match");
-        Assertions.assertEquals("http://192.168.32.234/registration", driver.getCurrentUrl(), "web addresses not match");
+        Assertions.assertNotEquals(firstName + " " + UserDataGenerator.getLastName(), loginPage.getMyUserName(), "Name does not match");
+        Assertions.assertEquals("http://192.168.89.47/registration", driver.getCurrentUrl(), "web addresses not match");
 // form accepts spaces before name " John", space after name "John ", special symbol "John-Doe", space inside name "J ohn"
     }
 
@@ -162,8 +162,8 @@ public class LoginPageTest extends BaseTest {
         loginPage.clickLoginSaveButton();
 
         // Verify user is not logged in
-        Assertions.assertNotEquals(UserDataGenerator.getFirstName() + " " + UserDataGenerator.getLastName(), loginPage.getMyUserName(), "Name does not match");
-        Assertions.assertEquals("http://192.168.32.234/registration", driver.getCurrentUrl(), "web addresses not match");
+        Assertions.assertNotEquals(UserDataGenerator.getFirstName() + " " + lastName, loginPage.getMyUserName(), "Name does not appeare");
+        Assertions.assertEquals("http://192.168.89.47/registration", driver.getCurrentUrl(), "web addresses not match");
 // form accepts spaces before lastname " Doe", space after secondname "Doe ", special symbol "Doe-John", space inside name "D oe"
     }
 
@@ -189,7 +189,7 @@ public class LoginPageTest extends BaseTest {
 
         // Verify user is not logged in
         Assertions.assertNotEquals(UserDataGenerator.getFirstName() + " " + UserDataGenerator.getLastName(), loginPage.getMyUserName(), "Name does not match");
-        Assertions.assertEquals("http://192.168.32.234/registration", driver.getCurrentUrl(), "web addresses not match");
+        Assertions.assertEquals("http://192.168.89.47/registration", driver.getCurrentUrl(), "web addresses not match");
     }
 
     @ParameterizedTest
@@ -214,7 +214,7 @@ public class LoginPageTest extends BaseTest {
 
         // Verify user is not logged in
         Assertions.assertNotEquals(UserDataGenerator.getFirstName() + " " + UserDataGenerator.getLastName(), loginPage.getMyUserName(), "Name does not match");
-        Assertions.assertEquals("http://192.168.32.234/registration", driver.getCurrentUrl(), "web addresses not match");
+        Assertions.assertEquals("http://192.168.89.47/registration", driver.getCurrentUrl(), "web addresses not match");
     }
 
     @ParameterizedTest
@@ -225,9 +225,8 @@ public class LoginPageTest extends BaseTest {
         loginPage.setEmail(email);
         loginPage.setPassword(password);
         loginPage.submitLogin();
-
         Assertions.assertNotEquals(UserDataGenerator.getFirstName() + " " + UserDataGenerator.getLastName(), loginPage.getMyUserName(), "Name does not match");
-        Assertions.assertEquals("http://192.168.32.234/login?back=http%3A%2F%2F192.168.32.234%2F", driver.getCurrentUrl(), "web addresses not match");
+        Assertions.assertEquals("http://192.168.89.47/login?back=http%3A%2F%2F192.168.32.234%2F", driver.getCurrentUrl(), "web addresses not match");
 
     }
 }
