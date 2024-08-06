@@ -1,5 +1,7 @@
 package lt.techin.vmichailov;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +9,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.util.List;
 
@@ -147,7 +153,35 @@ public class LoginPage extends BasePage {
         searchInputWindow.sendKeys(Keys.ENTER);
     }
 
+//    public void writeDataToCSV(File file, List<String[]> loginData) {
+//        try (FileWriter out = new FileWriter(file);
+//             CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader("email", "password", "username"))) {
+//            for (String[] record : loginData) {
+//                printer.printRecord(record);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
+    public void writeDataToCSV(File file, List<String[]> loginData) {
+        boolean fileExists = file.exists();
+
+        try (FileWriter out = new FileWriter(file, true); // Open in append mode
+             CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withRecordSeparator("\n"))) {
+
+            // Add header only if the file does not exist or is empty
+            if (!fileExists || Files.size(file.toPath()) == 0) {
+                printer.printRecord("email", "password", "username");
+            }
+
+            for (String[] record : loginData) {
+                printer.printRecord((Object[]) record);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

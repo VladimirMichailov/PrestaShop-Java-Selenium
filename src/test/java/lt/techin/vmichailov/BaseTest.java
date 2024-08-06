@@ -23,8 +23,8 @@ public class BaseTest {
         driver.get("http://192.168.89.47/");
     }
 
-//    @AfterEach
-//    void teardown() {
-//        driver.quit();
-//    }
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
 }
